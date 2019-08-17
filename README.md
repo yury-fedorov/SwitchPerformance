@@ -1,6 +1,6 @@
-# StringInterpolationPerformance
+# SwitchPerformance
 
-String Interpolation vs String Format, String Concat and String Builder performance benchmarks
+Switch performance alternatives in C# 8 benchmarks
 
 ## How to run the test
 ```
