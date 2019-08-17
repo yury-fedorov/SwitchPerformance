@@ -1,4 +1,0 @@
-/Users/fedoy/projects/SwitchPerformance/SwitchPerformance/obj/Debug/netcoreapp2.2/SwitchPerformance.csprojAssemblyReference.cache
-/Users/fedoy/projects/SwitchPerformance/SwitchPerformance/obj/Debug/netcoreapp2.2/SwitchPerformance.csproj.CoreCompileInputs.cache
-/Users/fedoy/projects/SwitchPerformance/SwitchPerformance/obj/Debug/netcoreapp2.2/SwitchPerformance.AssemblyInfoInputs.cache
-/Users/fedoy/projects/SwitchPerformance/SwitchPerformance/obj/Debug/netcoreapp2.2/SwitchPerformance.AssemblyInfo.cs
