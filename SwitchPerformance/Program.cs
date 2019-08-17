@@ -2,6 +2,7 @@
 using BenchmarkDotNet.Running;
 using System;
 using System.Drawing;
+using System.Collections.Generic;
 
 
 namespace SwitchPerformance
@@ -34,6 +35,7 @@ namespace SwitchPerformance
             {
                 case Rainbow.Red: return Color.Red;
             }
+            throw new Exception("unexpected state");
         }
 
         private readonly IDictionary<Rainbow,Color> _map = new Dictionary<Rainbow, Color> {
@@ -55,6 +57,8 @@ namespace SwitchPerformance
         [Benchmark]
         public Color SwitchExpression8() => _value switch
         {
-            Rainbow.Red => Color.Red
-        };
+            Rainbow.Red => Color.Red,
+            _ => throw new Exception("unexpected state")
+    };
+    }
 }
