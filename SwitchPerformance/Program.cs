@@ -3,7 +3,7 @@ using BenchmarkDotNet.Running;
 using System;
 using System.Drawing;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace SwitchPerformance
 {
@@ -27,7 +27,33 @@ namespace SwitchPerformance
     public class SwitchPerformanceTest
     {
         private readonly Rainbow _value = (Rainbow)(int)Math.Round(new Random().NextDouble() * (int)Rainbow.Violet);
-  
+
+        private readonly IDictionary<Rainbow, Color> _map = new Dictionary<Rainbow, Color> {
+
+            {Rainbow.Red, Color.Red},
+            {Rainbow.Orange, Color.Orange},
+            {Rainbow.Yellow, Color.Yellow},
+            {Rainbow.Green, Color.Green},
+            {Rainbow.Blue, Color.Blue},
+            {Rainbow.Indigo, Color.Indigo},
+            {Rainbow.Violet, Color.Violet}
+        };
+
+        private readonly Color[] _arrayMap;
+
+        public SwitchPerformanceTest() 
+        {
+            var max = _map.Keys.Max(k => (int)k); 
+            _arrayMap = new Color[max +1];
+            foreach( var p in _map)
+            {
+                _arrayMap[(int)p.Key] = p.Value;
+            }
+        }
+
+        [Benchmark]
+        public Color ArrayAsMap() => _arrayMap[(int)_value];
+
         [Benchmark]
         public Color StandardSwitch()
         {
@@ -43,17 +69,6 @@ namespace SwitchPerformance
             }
             throw new Exception("unexpected state");
         }
-
-        private readonly IDictionary<Rainbow,Color> _map = new Dictionary<Rainbow, Color> {
-        
-            {Rainbow.Red, Color.Red},
-            {Rainbow.Orange, Color.Orange},
-            {Rainbow.Yellow, Color.Yellow},
-            {Rainbow.Green, Color.Green},
-            {Rainbow.Blue, Color.Blue},
-            {Rainbow.Indigo, Color.Indigo},
-            {Rainbow.Violet, Color.Violet}
-        };
 
         [Benchmark]
         public Color If()
@@ -82,6 +97,6 @@ namespace SwitchPerformance
             Rainbow.Indigo => Color.Indigo,
             Rainbow.Violet => Color.Violet,
             _ => throw new Exception("unexpected state")
-    };
+        };
     }
 }
